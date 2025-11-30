@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "io.github.t45k"
-version = "0.1.0-SNAPSHOT"
+version = "0.0.1"
 
 kotlin {
     jvmToolchain(25)
