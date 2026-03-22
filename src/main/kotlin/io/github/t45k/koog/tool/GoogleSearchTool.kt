@@ -7,7 +7,6 @@ import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
-import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.serializer
 import org.jetbrains.annotations.VisibleForTesting
@@ -25,13 +24,12 @@ class GoogleSearchTool(
     private val apiKey: String,
     private val cx: String,
     private val client: HttpClient = HttpClient(CIO)
-) : Tool<GoogleSearchArgs, String>() {
-
-    override val name: String = "googleSearch"
-    override val description: String = "Execute web search and return a summary of top results. { query: string, num?: number }"
-
-    override val argsSerializer: KSerializer<GoogleSearchArgs> = GoogleSearchArgs.serializer()
-    override val resultSerializer: KSerializer<String> = String.serializer()
+) : Tool<GoogleSearchArgs, String>(
+    argsSerializer = GoogleSearchArgs.serializer(),
+    resultSerializer = String.serializer(),
+    name = "googleSearch",
+    description = "Execute web search and return a summary of top results. { query: string, num?: number }"
+) {
 
     override suspend fun execute(args: GoogleSearchArgs): String {
         val response: HttpResponse = client.get(apiEndpoint) {
