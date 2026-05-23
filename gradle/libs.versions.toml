@@ -1,6 +1,6 @@
 [versions]
 kotlin = "2.3.21"
-junit-jupiter = "6.0.3"
+junit-jupiter = "6.1.0"
 koog = "0.8.0"
 serialization = "1.11.0"
 ktor = "3.5.0"
