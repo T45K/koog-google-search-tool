@@ -1,6 +1,7 @@
 package io.github.t45k.koog.tool
 
 import ai.koog.agents.core.tools.Tool
+import ai.koog.serialization.typeToken
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.request.get
@@ -8,7 +9,6 @@ import io.ktor.client.request.parameter
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.builtins.serializer
 import org.jetbrains.annotations.VisibleForTesting
 
 @Serializable
@@ -25,8 +25,8 @@ class GoogleSearchTool(
     private val cx: String,
     private val client: HttpClient = HttpClient(CIO)
 ) : Tool<GoogleSearchArgs, String>(
-    argsSerializer = GoogleSearchArgs.serializer(),
-    resultSerializer = String.serializer(),
+    argsType = typeToken<GoogleSearchArgs>(),
+    resultType = typeToken<String>(),
     name = "googleSearch",
     description = "Execute web search and return a summary of top results. { query: string, num?: number }"
 ) {
