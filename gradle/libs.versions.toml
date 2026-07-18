@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.4.0"
+kotlin = "2.4.10"
 junit-jupiter = "6.1.1"
 koog = "1.0.0"
 serialization = "1.11.0"
